@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css", integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1", crossorigin="anonymous")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    script(src="https://cdn.socket.io/3.1.1/socket.io.min.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    style.
+      body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+      form { background: #efefef; padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #input-text { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 1rem; margin: 0.25rem; }
+      #input-text:focus { outline: none; }
+
+      #messages-list { list-style-type: none; margin: 0; padding: 0; }
+      #messages-list > li { padding: 0.5rem 1rem; background: #efefef; margin: 0.5rem; }
+
+  body
+    .container
+      .columns
+        ul#messages-list
+        form
+          textarea(class="form-control", id="input-text", rows="4")
+          input(type="submit", class="btn btn-success", value="POST", style="padding: 0 1rem; margin: 2rem 0.6rem")
+
+    script.
+      const socket = io();
+      
+      $('form').submit(function(e) {
+        e.preventDefault();
+        const message = $('#input-text').val();
+
+        socket.emit('chat-msg', message);
+        $('#input-text').val('');
+        return;
+      });
+
+      socket.on('chat-msg', function(message) {
+        $('#messages-list').append($('<li>').text(message));
+      });

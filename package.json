@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js",
+    "devstart": "nodemon app.js",
+    "serverstart": "DEBUG=chat-room-app:* npm run devstart"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,6 +15,9 @@
     "mongoose": "^5.11.12",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
-    "socket.io": "^3.1.0"
+    "socket.io": "^3.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
