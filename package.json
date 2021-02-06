@@ -8,6 +8,7 @@
     "serverstart": "DEBUG=chat-room-app:* npm run devstart"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",

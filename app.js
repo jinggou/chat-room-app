@@ -43,10 +43,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // mongoose connection setup
-var mongoose = require('mongoose');
-var uri = 'mongodb+srv://admin:admin@cluster0.puvzp.mongodb.net/lib_db?retryWrites=true&w=majority';
+const mongoose = require('mongoose');
+const uri = 'mongodb+srv://admin:admin@cluster0.puvzp.mongodb.net/chatroom?retryWrites=true&w=majority';
 mongoose.connect(uri, { useNewUrlParser: true , useUnifiedTopology: true});
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // catch 404 and forward to error handler
